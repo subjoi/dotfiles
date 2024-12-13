@@ -9,6 +9,7 @@ set $wallpaper ~/pics/pape.png
 set $lockpaper ~/pics/lock.png
 set $menu dmenu_path | wmenu | xargs swaymsg exec --
 set $lock swaylock -f -i $lockpaper && playerctl stop
+set $waybar-dir ~/.config/waybar/2bars
 
 exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -17,7 +18,7 @@ exec wayland-pipewire-idle-inhibit
 exec mako
 exec playerctld
 exec easyeffects
-exec waybar -c ~/docs/2bars/2bars.jsonc -s ~/docs/2bars/2barsstyle.css
+exec waybar -c $waybar-dir/2bars.jsonc -s $waybar-dir/2barsstyle.css
 
 
 output * bg $wallpaper fill

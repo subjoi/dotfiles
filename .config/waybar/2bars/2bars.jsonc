@@ -1,0 +1,66 @@
+[
+  {
+    "layer": "top",
+    "output": "DVI-I-1",
+    "name": "left",
+    "position": "top",
+    "reload_style_on_change": true,
+    "height": 33,
+    "width": 1900,
+    "margin": "3, 0, 2, 0",
+    "include": [
+      "~/.config/waybar/2bars/default-modules.jsonc",
+    ],
+    "modules-left": [
+      "custom/scratchpad-indicator",
+      "sway/workspaces",
+      "sway/mode",
+      "custom/separator"
+    ],
+    "modules-center": [
+      "mpris"
+    ],
+    "modules-right": [
+      "bluetooth",
+      "custom/separator",
+      "network",
+      "custom/separator",
+      "privacy",
+      "custom/separator",
+      "idle_inhibitor",
+      "wlr/taskbar",
+      "custom/separator",
+      "clock"
+    ],
+  },
+  {
+    "layer": "top",
+    "output": "HDMI-A-1",
+    "position": "top",
+    "name": "right",
+    "reload_style_on_change": true,
+    "height": 33,
+    "width": 1900,
+    "margin": "3, 0, 2, 0",
+    "include": [
+      "~/docs/2bars/default-modules.jsonc",
+    ],
+    "modules-left": [ "wlr/taskbar" ],
+    "modules-center": [
+      "custom/separator",
+      "sway/workspaces",
+      "custom/separator"
+    ],
+    "modules-right": [
+      "cpu",
+      "custom/separator",
+      "memory",
+      "custom/separator",
+      "pulseaudio",
+      "custom/separator",
+      "tray",
+      "custom/separator",
+      "clock"
+    ],
+  }
+]

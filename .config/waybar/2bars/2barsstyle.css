@@ -1,0 +1,180 @@
+@import "./rose-pine.css";
+
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  border: none;
+  font-family: "MesloLGM Nerd Font Mono", "Inter";
+  /* Recommended font sizes: 720p: ~14px, 1080p: ~18px */
+  font-size: 14px;
+}
+
+.left,
+.right {
+  font-size: 16px;
+}
+
+window.left#waybar {
+  background-color: rgba(25, 23, 36, 0.9);
+  /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
+  color: @text;
+  transition-property: background-color;
+  transition-duration: .5s;
+  border-radius: 4px;
+}
+
+window.right#waybar {
+  background-color: rgba(25, 23, 36, 0.9);
+  /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
+  color: @text;
+  transition-property: background-color;
+  transition-duration: .5s;
+  border-radius: 4px;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces button {
+  padding: 0px;
+  margin: 4px 0 6px 0;
+  background-color: transparent;
+  color: @text;
+  min-width: 36px;
+}
+
+#workspaces button.empty {
+  color: @muted;
+}
+
+#workspaces button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused {
+  background-color: @pine;
+  color: @text;
+}
+
+#workspaces button.urgent {
+  background-color: @love;
+  color: @muted;
+}
+
+#mode {
+  background-color: #64727D;
+  border-bottom: 1px solid #ffffff;
+}
+
+#clock,
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#custom-power,
+#custom-pacman,
+#custom-scratchpad-indicator,
+#language,
+#mpris,
+#privacy,
+#bluetooth,
+#taskbar {
+  padding: 0px 3px;
+  margin: 4px 3px 4px 3px;
+  color: @text;
+}
+
+#taskbar button {
+  font-size: 13px;
+  margin: 0 0 0 4px;
+  padding-left: 12px;
+}
+
+#window,
+#workspaces {
+  margin: 0 4px;
+}
+
+#clock {
+  color: @gold;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#cpu {
+  color: @gold;
+}
+
+#memory {
+  color: @gold;
+}
+
+#pulseaudio {
+  color: @gold;
+}
+
+#network {
+  padding: 0px 3px;
+  margin: 4px 3px 4px 3px;
+  color: @text;
+  font-size: 24px;
+}
+
+#bluetooth.disabled,
+#bluetooth.off,
+#network.disconnected,
+#network.disabled,
+#pulseaudio.muted {
+  color: @love;
+}
+
+#network.linked,
+#network.ethernet {
+  color: @gold;
+}
+
+#bluetooth.on,
+#bluetooth.connected {
+  font-weight: bold;
+}
+
+#idle_inhibitor {
+  border-radius: 4px;
+  font-size: 24px;
+
+}
+
+#custom-separator {
+  color: @muted;
+  margin: 0 1px;
+  font-size: 16px;
+  padding-bottom: 0px;
+}
+
+#custom-scratchpad-indicator {
+  margin-top: 4px;
+  padding-left: 12px;
+}
+
+#mpris.playing {
+  font-family: "Inter";
+  font-weight: 600;
+}
+
+#mpris.paused {
+  font-family: "Inter";
+  font-weight: 200;
+  color: @hightlightmed;
+}
+
+#privacy-item.audio-out,
+#privacy-item.audio-in,
+#privacy-item.screenshare {
+  color: @gold;
+}

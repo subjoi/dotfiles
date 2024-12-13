@@ -1,0 +1,56 @@
+# Default workspaces for programs
+assign {
+    [app_id="^firefox$"] 1
+    [class="^Spotify$"] 4
+    [class="Timeshift-gtk"] 3
+    [app_id="vesktop"] 6
+    [class="^discord$"] 6
+    [class="Steam"] 8
+    [app_id="thunar"] 3
+    [app_id="^pwvucontrol$"] 4
+    [app_id="^(.*)(easyeffects)$"] 4
+    [app_id="^(.*)(qBittorrent)$"] 6
+    [app_id="^(.*)(KeePassXC)"] 6
+    [title="Save Image" app_id="firefox"] 9
+}
+
+for_window {
+    [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+    [app_id="nwg-look"] floating enable
+    [app_id="^virt-manager$"] floating enable
+    [app_id="^discord$"] floating enable
+    [app_id="^(.*)(qBittorrent)$"] floating enable
+    [title="^Discord Updater$"] floating enable, border none, move scratchpad
+    [app_id="kitty-float"] floating enable
+    [app_id="pwvucontrol"] floating enable
+    [app_id="^(.*)(KeePassXC)$"] floating enable
+    #[app_id="^(.*)(easyeffects)$"] floating enable, resize set width 720 height 600, move position 1180 50
+    [app_id="blueman-manager"] floating enable
+    [app_id="xarchiver"] floating enable
+    [app_id="blueman-services"] floating enable
+    [app_id="nm-connection-editor"] floating enable
+    [shell="xwayland"] title_format "[XWayland] %title"
+    [title="timeshift-gtk"] floating enable
+    [title="Friends" ] floating enable
+    [title="Library" app_id="firefox"] floating enable
+    [title="Save Image" app_id="firefox"] focus
+    [title="Steam Settings" ] floating enable
+    [title="Spotify"] floating enable, border none 
+    [class="Lxappearance"] floating enable sticky enable
+    [class="Gparted"] floating enable sticky enable
+    [title="^File Operation Progress$"] floating enable 
+    [title="^popup_"] floating enable, border none,  move scratchpad, sticky enable
+    [title="^popup_term$"] mark popup_term, resize set $dispwidth 208, move position 0 0
+    [app_id="^popup_"] floating enable, border none,  move scratchpad, sticky enable
+    [app_id="^popup_term$"] mark popup_term, resize set $dispwidth 208, move position 0 0
+    [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
+    [window_role="pop-up"] floating enable
+    [window_role="bubble"] floating enable
+    [window_role="task_dialog"] floating enable
+    [window_role="Preferences"] floating enable
+    [window_type="dialog"] floating enable
+    [window_type="menu"] floating enable
+    [window_role="About"] floating enable
+}
+
+include ~/.config/sway/config

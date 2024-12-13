@@ -1,0 +1,278 @@
+{
+    "layer": "top",
+    "position": "top",
+    "reload_style_on_change": true,
+    "height": 33,
+    "width": 1900,
+    "margin": "3, 0, 2, 0",
+    // Choose the order of the modules
+    "modules-left": ["custom/scratchpad-indicator","sway/workspaces","sway/mode","custom/separator"],
+    "modules-center": ["mpris"],
+    "modules-right": [
+        "idle_inhibitor",
+        "custom/separator",
+        "cpu",
+        "custom/separator",
+        "memory",
+        "custom/separator",
+        "pulseaudio",
+        "custom/separator",
+        "tray",
+        "custom/separator",
+        "clock"],
+
+    // Modules configuration
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "numeric-first": true,
+        "all-outputs": false,
+        "format": "{name}",
+        "persistent-workspaces": {
+          "1": ["DVI-I-1"],
+          "2": ["DVI-I-1"],
+          "3": ["DVI-I-1"],
+          "4": ["DVI-I-1"],
+          "5": ["DVI-I-1"],
+          "6": ["HDMI-A-1"],
+          "7": ["HDMI-A-1"],
+          "8": ["HDMI-A-1"],
+          "9": ["HDMI-A-1"],
+        }
+    },
+    "custom/scratchpad-indicator": {
+        "interval": 3,
+        "return-type": "json",
+        "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '(recurse(.nodes[]) | select(.name == \"__i3_scratch\") | .focus) as $scratch_ids | [..  | (.nodes? + .floating_nodes?) // empty | .[] | select(.id |IN($scratch_ids[]))] as $scratch_nodes | if ($scratch_nodes|length) > 0 then { text: \"\\($scratch_nodes | length)\", tooltip: $scratch_nodes | map(\"\\(.app_id // .window_properties.class) (\\(.id)): \\(.name)\") | join(\"\\n\") } else empty end'",
+        "format": "{} 🗗",
+        "on-click": "exec swaymsg 'scratchpad show'",
+        "on-click-right": "exec swaymsg 'move scratchpad'"
+    },
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 8
+    },
+    "clock": {
+        "interval": 1,
+        "locale": "C", 
+        "format": " {:%I:%M %p}",
+        "format-alt": " {:%a,%b %d}" // Icon: calendar-alt
+    },
+    "cpu": {
+        "format": "&#8239;{usage}%",
+        "tooltip": false,
+        "on-click": "kitty -e 'htop'"
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {used:0.2f}GB",
+
+        "max-length": 10,
+        "tooltip": false,
+        "warning": 70,
+        "critical": 90
+    },
+    "pulseaudio": {
+      // "scroll-step": 1, // %, can be a float
+      "format": "{icon} {volume}% {format_source}",
+      "format-bluetooth": "{icon} {volume}% {format_source}",
+      "format-bluetooth-muted": " {format_source}",
+      "format-muted": "  {format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": "",
+      "ignored-sinkS": ["Easy Effects Sink"],
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "🎧",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "on-click": "pwvucontrol"
+    },
+    "mpris": {
+      "format": "{player_icon} {dynamic}",
+      "format-paused": "{status_icon} <i>{dynamic}</i>",
+     	"player-icons": {
+    		"default": "▶",
+    		"mpv": "🎵"
+    	},
+    	"status-icons": {
+    		"paused": "⏸"
+    	},
+      "interval": 1,
+     "ignored-players": ["firefox"]     
+    }
+}
+//// =============================================================================
+////
+//// Waybar configuration
+////
+//// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+////
+//// =============================================================================
+//
+//{
+//    // -------------------------------------------------------------------------
+//    // Global configuration
+//    // -------------------------------------------------------------------------
+//
+//    "layer": "top",
+//
+//    "position": "top",
+//
+//    // If height property would be not present, it'd be calculated dynamically
+//    "height": 25,
+//
+//    "modules-left": [
+//        "sway/workspaces",
+//        "sway/mode"
+//    ],
+//    "modules-center": [
+//        "sway/window"
+//    ],
+//    "modules-right": [
+//        "network",
+//        "memory",
+//        "cpu",
+//        "temperature",
+//        "custom/keyboard-layout",
+//        "tray",
+//        "clock#date",
+//        "clock#time"
+//    ],
+//
+//
+//    // -------------------------------------------------------------------------
+//    // Modules
+//    // -------------------------------------------------------------------------
+//
+//
+//    "clock#time": {
+//        "interval": 1,
+//        "format": "{:%H:%M:%S}",
+//        "tooltip": false
+//    },
+//
+//    "clock#date": {
+//      "interval": 10,
+//      "format": "  {:%e %b %Y}", // Icon: calendar-alt
+//      "tooltip-format": "{:%e %B %Y}"
+//    },
+//
+//    "cpu": {
+//        "interval": 5,
+//        "format": "  {usage}% ({load})", // Icon: microchip
+//        "states": {
+//          "warning": 70,
+//          "critical": 90
+//        }
+//    },
+//
+//    "custom/keyboard-layout": {
+//      "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+//      // Interval set only as a fallback, as the value is updated by signal
+//      "interval": 30,
+//      "format": "  {}", // Icon: keyboard
+//      // Signal sent by Sway key binding (~/.config/sway/key-bindings)
+//      "signal": 1, // SIGHUP
+//      "tooltip": false
+//    },
+//
+//    "memory": {
+//        "interval": 5,
+//        "format": "  {}%", // Icon: memory
+//        "states": {
+//            "warning": 70,
+//            "critical": 90
+//        }
+//    },
+//
+//    "network": {
+//        "interval": 5,
+//        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
+//        "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+//        "format-disconnected": "⚠  Disconnected",
+//        "tooltip-format": "{ifname}: {ipaddr}"
+//    },
+//
+//    "sway/mode": {
+//        "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt
+//        "tooltip": false
+//    },
+//
+//    "sway/window": {
+//        "format": "{}",
+//        "max-length": 120
+//    },
+//
+//    "sway/workspaces": {
+//        "all-outputs": false,
+//        "disable-scroll": true,
+//        "format": "{icon} {name}",
+//        "format-icons": {
+//            "1:www": "龜", // Icon: firefox-browser
+//            "2:mail": "", // Icon: mail
+//            "3:editor": "", // Icon: code
+//            "4:terminals": "", // Icon: terminal
+//            "5:portal": "", // Icon: terminal
+//            "urgent": "",
+//            "focused": "",
+//            "default": ""
+//        }
+//    },
+//
+//    "pulseaudio": {
+//        //"scroll-step": 1,
+//        "format": "{icon}  {volume}%",
+//        "format-bluetooth": "{icon}  {volume}%",
+//        "format-muted": "",
+//        "format-icons": {
+//            "headphones": "",
+//            "handsfree": "",
+//            "headset": "",
+//            "phone": "",
+//            "portable": "",
+//            "car": "",
+//            "default": ["", ""]
+//        },
+//        "on-click": "pavucontrol"
+//    },
+//
+//    "temperature": {
+//      "critical-threshold": 80,
+//      "interval": 5,
+//      "format": "{icon}  {temperatureC}°C",
+//      "format-icons": [
+//          "", // Icon: temperature-empty
+//          "", // Icon: temperature-quarter
+//          "", // Icon: temperature-half
+//          "", // Icon: temperature-three-quarters
+//          ""  // Icon: temperature-full
+//      ],
+//      "tooltip": true
+//    },
+//
+//    "tray": {
+//        "icon-size": 18,
+//        "spacing": 10
+//    }
+//
+//}
+//
