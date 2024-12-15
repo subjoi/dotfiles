@@ -56,6 +56,11 @@ default-timeout=2000
 group-by=category
 
 [app-name=Spotify]
+width=400
+
+[app-name=kitty-bell]
+group-by=app-name,category
+
 
 [app-name=sway]
 text-color=#FF0000

@@ -18,14 +18,15 @@ exec wayland-pipewire-idle-inhibit
 exec mako
 exec playerctld
 exec easyeffects
-exec waybar -c $waybar-dir/2bars.jsonc -s $waybar-dir/2barsstyle.css
+exec_always $waybar-dir/launch.sh
+exec bt-agent --daemon -p ~/.local/share/bt-agent/pincodes
 
 
 output * bg $wallpaper fill
 
 exec swayidle -w \
          timeout 300 'swaylock -f -i $lockpaper && playerctl stop' \
-         timeout 600 'swaymsg "output * power off"' \
+         timeout 6000 'swaymsg "output * power off"' \
               resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 
@@ -111,6 +112,8 @@ workspace 6 output HDMI-A-1
 workspace 7 output HDMI-A-1
 workspace 8 output HDMI-A-1
 workspace 9 output HDMI-A-1
+workspace 10 output HDMI-A-1
+
 
 # Switch to workspace
 bindsym $mod+1 workspace number 1
@@ -122,6 +125,7 @@ bindsym $mod+6 workspace number 6
 bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
@@ -132,6 +136,7 @@ bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 
 bindsym $mod+e layout toggle split
 
