@@ -19,7 +19,6 @@ exec mako
 exec playerctld
 exec easyeffects
 exec_always $waybar-dir/launch.sh
-exec bt-agent --daemon -p ~/.local/share/bt-agent/pincodes
 
 
 output * bg $wallpaper fill

@@ -43,7 +43,7 @@
     "width": 1900,
     "margin": "3, 0, 2, 0",
     "include": [
-      "~/docs/2bars/default-modules.jsonc",
+      "~/.config/waybar/2bars/default-modules.jsonc",
     ],
     "modules-left": [ "wlr/taskbar" ],
     "modules-center": [
