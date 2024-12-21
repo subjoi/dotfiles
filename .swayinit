@@ -2,6 +2,8 @@
 
 if [ -z "$WAYLAND_DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
 
+  /usr/bin/env -i
+
   export WLR_NO_HARDWARE_CURSORS=1
   export QT_QPA_PLATFORMTHEME=qt5ct
   export QT_QPA_PLATFORM=wayland

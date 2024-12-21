@@ -11,14 +11,16 @@ set $menu dmenu_path | wmenu | xargs swaymsg exec --
 set $lock swaylock -f -i $lockpaper && playerctl stop
 set $waybar-dir ~/.config/waybar/2bars
 
+xwayland disable
+
 exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always autotiling
 exec wayland-pipewire-idle-inhibit
 exec mako
 exec playerctld
-exec easyeffects
 exec_always $waybar-dir/launch.sh
+
 
 
 output * bg $wallpaper fill
