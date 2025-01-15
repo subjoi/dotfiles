@@ -5,12 +5,12 @@ assign {
     [app_id="^pwvucontrol$"] 4
     [app_id="^(.*)(easyeffects)$"] 4
     [app_id="vesktop"] 6
-    [app_id="^(.*)(KeePassXC)"] 6
     [class="^discord$"] 6
     [class="^Spotify$"] 7
     [class="Steam"] 8
     [app_id="^(.*)(qBittorrent)$"] 9
     [title="Save Image" app_id="firefox"] 9
+    [app_id="btrfs-assistant"] 10
 }
 
 for_window {
@@ -18,7 +18,8 @@ for_window {
     [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
     [app_id="nwg-look"] floating enable
     [app_id="^virt-manager$"] floating enable
-    [app_id="^discord$"] floating enable
+#   [app_id="^discord$"] floating enable
+    [app_id="vesktop"] tiling enable 
     [app_id="^(.*)(qBittorrent)$"] floating enable
     [title="^Discord Updater$"] floating enable, border none, move scratchpad
     [app_id="kitty-float"] floating enable

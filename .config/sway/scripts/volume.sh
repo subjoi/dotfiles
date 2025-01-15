@@ -1,42 +1,50 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
+NOTIFY_IMAGE_UP="/usr/share/icons/Papirus-Dark/48x48/status/notification-audio-volume-high.svg"
+NOTIFY_IMAGE_DOWN="/usr/share/icons/Papirus-Dark/48x48/status/notification-audio-volume-medium.svg"
+NOTIFY_IMAGE_MUTED="/usr/share/icons/Papirus-Dark/48x48/status/notification-audio-volume-muted.svg"
+NOTIFY_PARAMS="--app-name=volume-control --replace-id=69 --category=device"
 
 SINK="@DEFAULT_SINK@"
 
-MUTED=$(wpctl status -n | grep -E -i "(output).*(muted)")
+VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -E -o '[0-9]?[0-9]?[0-9]%' | head -n 1)
 
-get_volume(){
-  VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -E -o '[0-9]?[0-9]?[0-9]%' | head -n 1)
+
+raise_volume(){
+  wpctl set-volume $SINK 5%+ && wpctl set-mute $SINK 0
+  notify-send $NOTIFY_PARAMS -i $NOTIFY_IMAGE_UP "Current volume: $VOLUME"
+
 }
-muted(){
-if [[ -n "$MUTED" ]]; then
-  return 0
+
+lower_volume(){
+  wpctl set-volume $SINK 5%- && wpctl set-mute $SINK 0
+  notify-send $NOTIFY_PARAMS -i $NOTIFY_IMAGE_DOWN "Current volume: $VOLUME"
+}
+toggle_mute(){
+  MUTED=$(wpctl status -n | grep -E -i "(output).*(muted)")
+
+  if [[ -z $MUTED ]] ; then
+    wpctl set-mute $SINK 1
+    notify-send $NOTIFY_PARAMS -i $NOTIFY_IMAGE_MUTED "Volume Muted" "Current volume: $VOLUME"
+    return 1
+  else
+    wpctl set-mute $SINK 0
+    notify-send $NOTIFY_PARAMS -i $NOTIFY_IMAGE_UP "Volume Unmuted" "Current volume: $VOLUME"
 fi
 }
 
-if [[ $1 == "--inc" ]]; then
-    wpctl set-volume $SINK 5%+ && set-mute $SINK 0 
-    get_volume
-    notify-send --app-name=volume-control --replace-id=69 --category=device \
-      -i "/usr/share/icons/Papirus-Dark/48x48/status/notification-audio-volume-high.svg" \
-               "Volume Up:" "$VOLUME"
 
-elif [[ $1 == "--dec" ]]; then
-    wpctl set-volume $SINK 5%- && set-mute $SINK 0
-    get_volume
-    notify-send --app-name=volume-control --replace-id=69 --category=device \
-      -i "/usr/share/icons/Papirus-Dark/48x48/status/notification-audio-volume-medium.svg" \
-      "Volume Down:" "$VOLUME%"
-
-elif [[ $1 == "--mute" ]]; then
-    wpctl set-mute $SINK toggle
-    get_volume
-      if muted; then
-          notify-send --app-name=volume-control --replace-id=69 --category=device \
-            -i "/usr/share/icons/Papirus-Dark/48x48/status/notification-audio-volume-muted.svg" \
-            "Volume Muted" "Current volume: $VOLUME"
-      else
-          notify-send --app-name=volume-control --replace-id=69 --category=device \
-            -i "/usr/share/icons/Papirus-Dark/48x48/status/notification-audio-volume-high.svg" \
-          "Volume Unmuted" "Current volume: $VOLUME"
-      fi
-fi
+case "$1" in
+  -i | --inc )
+    raise_volume
+    ;;
+  -d | --dec )
+    lower_volume
+    ;;
+  -m | --mute )
+    toggle_mute
+    ;;
+  *)
+    echo "Usage: $0 --inc, -i | --dec, -d | --mute, -m"
+    ;;
+esac

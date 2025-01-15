@@ -43,8 +43,8 @@
         }
     },
     "tray": {
-        "icon-size": 20,
-        "spacing": 4
+        "icon-size": 16,
+        "spacing": 2
     },
     "clock": {
         "interval": 1,
@@ -117,13 +117,16 @@
     },
     "wlr/taskbar": {
       "format": "{icon}",
-      "icon-size": 16,
+      "icon-size": 14,
       "icon-theme": "Zafiro-icons-Light",
       "tooltip-format": "{title}",
       "on-click": "activate",
       "on-click-middle": "close",
       "ignore-list": [
-        "kitty"
+        "kitty",
+        "foot",
+        "footclient"
+        
       ],
       "app_ids-mapping": {
         "firefoxdeveloperedition": "firefox-developer-edition"

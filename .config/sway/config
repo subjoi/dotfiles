@@ -4,21 +4,27 @@ set $left h
 set $down j
 set $up k
 set $right l
+set $speaker F8:5C:7E:D4:18:E5
+set $headphones 88:C9:E8:13:63:77
 set $term kitty
+#set $term footclient
 set $wallpaper ~/pics/pape.png
 set $lockpaper ~/pics/lock.png
 set $menu dmenu_path | wmenu | xargs swaymsg exec --
 set $lock swaylock -f -i $lockpaper && playerctl stop
 set $waybar-dir ~/.config/waybar/2bars
 
-xwayland disable
+#xwayland disable
 
 exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
+exec bluetoothctl connect $speaker &> /tmp/sway-btctl.log
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec_always autotiling
 exec wayland-pipewire-idle-inhibit
 exec mako
 exec playerctld
+exec foot --server
+exec mullvad-daemon
 exec_always $waybar-dir/launch.sh
 
 
@@ -66,7 +72,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Escape exec powermenu
 bindsym $mod+Shift+c kill
 bindsym $mod+Space exec wofi --show drun
-bindsym Print exec printscreen.sh
+bindsym Print exec prntscrn.sh
 
 bindsym $mod+Shift+w exec firefox
 bindsym $mod+Shift+f exec thunar
@@ -87,7 +93,7 @@ floating_maximum_size -1 x -1
 bindsym $mod+Shift+r reload
 
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec swaynag -t warning -m 'exit?' -B 'yes' 'swaymsg exit'
 #
 # Moving around:
 #
