@@ -6,8 +6,8 @@ set $up k
 set $right l
 set $speaker F8:5C:7E:D4:18:E5
 set $headphones 88:C9:E8:13:63:77
-set $term kitty
-#set $term footclient
+#set $term kitty
+set $term footclient
 set $wallpaper ~/pics/pape.png
 set $lockpaper ~/pics/lock.png
 set $menu dmenu_path | wmenu | xargs swaymsg exec --
@@ -25,6 +25,7 @@ exec mako
 exec playerctld
 exec foot --server
 exec mullvad-daemon
+exec env GDK_BACKEND=x11 pcloud
 exec_always $waybar-dir/launch.sh
 
 
