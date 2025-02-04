@@ -1,31 +1,37 @@
 # Default workspaces for programs
 assign {
-    [app_id="^firefox$"] 1
+    [app_id="zen"] 1
+    [app_id="firefox"] 1
     [class="Timeshift-gtk"] 3
     [app_id="^pwvucontrol$"] 4
     [app_id="^(.*)(easyeffects)$"] 4
     [app_id="vesktop"] 6
     [class="^discord$"] 6
-    [class="^Spotify$"] 7
+    [class="Spotify"] 7
     [class="Steam"] 8
     [app_id="^(.*)(qBittorrent)$"] 9
-    [title="Save Image" app_id="firefox"] 9
+    [title="Save Image" app_id="firefox"] 1
     [app_id="btrfs-assistant"] 10
+    [title="^(p[cC]loud)(.*)$"] 10
 }
 
 for_window {
-    [workspace=10] floating enable
-    [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+     [workspace=10] floating enable
+
+##### Mail
+    [title="^(Write|New\ Event| Edit\ Calendar)(.*)(Betterbird)$"] floating enable, resize set width 930 height 820, move position center
+    [title="^(external_editor)(.*)(NVIM)$"] floating enable, resize set width 930 height 820, move position center
+    [title="^(.*)([0-9]{4})(.*)(Betterbird)$"] floating enable, resize set width 930 height 820, move position center
+    [app_id="Thunar"] floating enable, resize set width 930 height 820, move position center
     [app_id="nwg-look"] floating enable
     [app_id="^virt-manager$"] floating enable
-#   [app_id="^discord$"] floating enable
-    [app_id="vesktop"] tiling enable 
     [app_id="^(.*)(qBittorrent)$"] floating enable
     [title="^Discord Updater$"] floating enable, border none, move scratchpad
     [app_id="kitty-float"] floating enable
     [app_id="pwvucontrol"] floating enable
+    [title="OpenPGP Key Manager"] floating enable
     [app_id="^(.*)(KeePassXC)$"] floating enable
-    #[app_id="^(.*)(easyeffects)$"] floating enable, resize set width 720 height 600, move position 1180 50
+    [app_id="^(.*)(easyeffects)$"] floating enable, move position center
     [app_id="blueman-manager"] floating enable
     [app_id="xarchiver"] floating enable
     [app_id="blueman-services"] floating enable

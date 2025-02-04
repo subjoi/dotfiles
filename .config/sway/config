@@ -11,7 +11,7 @@ set $term kitty
 set $wallpaper ~/pics/pape.png
 set $lockpaper ~/pics/lock.png
 set $menu dmenu_path | wmenu | xargs swaymsg exec --
-set $lock swaylock -f -i $lockpaper && playerctl stop
+set $lock swaylock -f -C ~/.config/swaylock/config-rose && playerctl stop
 set $waybar-dir ~/.config/waybar/2bars
 
 #xwayland disable
@@ -25,6 +25,7 @@ exec mako
 exec playerctld
 exec foot --server
 exec mullvad-daemon
+exec env GDK_BACKEND=x11 pcloud
 exec_always $waybar-dir/launch.sh
 
 
@@ -32,7 +33,7 @@ exec_always $waybar-dir/launch.sh
 output * bg $wallpaper fill
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -i $lockpaper && playerctl stop' \
+         timeout 300 $lock \
          timeout 6000 'swaymsg "output * power off"' \
               resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
@@ -74,7 +75,7 @@ bindsym $mod+Shift+c kill
 bindsym $mod+Space exec wofi --show drun
 bindsym Print exec prntscrn.sh
 
-bindsym $mod+Shift+w exec firefox
+bindsym $mod+Shift+w exec zen-browser
 bindsym $mod+Shift+f exec thunar
 bindsym $mod+Shift+x exec $lock
 
