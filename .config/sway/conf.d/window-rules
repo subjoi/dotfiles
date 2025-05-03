@@ -13,6 +13,8 @@ assign {
     [title="Save Image" app_id="firefox"] 1
     [app_id="btrfs-assistant"] 10
     [title="^(p[cC]loud)(.*)$"] 10
+    [app_id="dev.deedles.Trayscale"] 10
+    [app_id="^(.*)(KeePassXC)$"] 10
 }
 
 for_window {
@@ -23,9 +25,10 @@ for_window {
     [title="^(external_editor)(.*)(NVIM)$"] floating enable, resize set width 930 height 820, move position center
     [title="^(.*)([0-9]{4})(.*)(Betterbird)$"] floating enable, resize set width 930 height 820, move position center
     [app_id="Thunar"] floating enable, resize set width 930 height 820, move position center
+    [app_id="(floorp|zen)" title="^about:blank(.*)(Close tabs?)(.*)(Floorp)$"] floating enable, move position center
     [app_id="nwg-look"] floating enable
     [app_id="^virt-manager$"] floating enable
-    [app_id="^(.*)(qBittorrent)$"] floating enable
+    [app_id="^(.*)(qBittorrent)$"] floating enable, border none, move scratchpad
     [title="^Discord Updater$"] floating enable, border none, move scratchpad
     [app_id="kitty-float"] floating enable
     [app_id="pwvucontrol"] floating enable
