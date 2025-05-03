@@ -8,10 +8,10 @@ set $speaker F8:5C:7E:D4:18:E5
 set $headphones 88:C9:E8:13:63:77
 #set $term kitty
 set $term footclient
-set $wallpaper ~/pics/pape.png
-set $lockpaper ~/pics/lock.png
+set $wallpaper ~/docs/pics/pape.png
+set $lockpaper ~/docs/pics/lock.png
 set $menu dmenu_path | wmenu | xargs swaymsg exec --
-set $lock swaylock -f -i $lockpaper && playerctl stop
+set $lock swaylock -f -C ~/.config/swaylock/config-rose && playerctl stop
 set $waybar-dir ~/.config/waybar/2bars
 
 #xwayland disable
@@ -24,16 +24,20 @@ exec wayland-pipewire-idle-inhibit
 exec mako
 exec playerctld
 exec foot --server
-exec mullvad-daemon
+#exec mullvad-daemon
 exec env GDK_BACKEND=x11 pcloud
 exec_always $waybar-dir/launch.sh
-
+exec trayscale
+#protonmal
+exec bridge.sh 
+exec keepassxc --minimized ${pwdb} 
+exec env QBT_NO_SPLASH=1 qbittorrent
 
 
 output * bg $wallpaper fill
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -i $lockpaper && playerctl stop' \
+         timeout 300 $lock \
          timeout 6000 'swaymsg "output * power off"' \
               resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
@@ -71,13 +75,14 @@ gaps outer 10
 ### Key bindings
 bindsym $mod+Return exec $term
 bindsym $mod+Escape exec powermenu
-bindsym $mod+Shift+c kill
-bindsym $mod+Space exec wofi --show drun
+bindsym $mod+Space exec fuzzel
+#bindsym $mod+Space exec wofi --show drun
 bindsym Print exec prntscrn.sh
 
-bindsym $mod+Shift+w exec firefox
-bindsym $mod+Shift+f exec thunar
+bindsym $mod+Shift+w exec zen-browser
+bindsym $mod+Shift+f exec nemo
 bindsym $mod+Shift+x exec $lock
+bindsym $mod+Shift+c kill
 
 # swayr
 bindsym $mod+Tab exec swayr switch-window
@@ -148,22 +153,14 @@ bindsym $mod+Shift+0 move container to workspace number 10
 
 bindsym $mod+e layout toggle split
 
-# Make the current focus fullscreen
 bindsym $mod+f fullscreen
-
-# Toggle the current focus between tiling and floating mode
 bindsym $mod+v floating toggle
 
-# Swap focus between the tiling area and the floating area
 bindsym Control+space focus mode_toggle
 
-# Move focus to the parent container
-#bindsym $mod+a focus parent
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
+
 mode "resize" {
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
