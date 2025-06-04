@@ -80,7 +80,7 @@
       "format-muted": "  {format_source}",
       "format-source": " {volume}%",
       "format-source-muted": "",
-      "ignored-sinkS": ["Easy Effects Sink"],
+      "ignored-sinks": ["Easy Effects Sink"],
       "format-icons": {
         "headphone": "",
         "hands-free": "",
@@ -103,7 +103,11 @@
     		"paused": "⏸"
     	},
       "interval": 1,
-     "ignored-players": ["firefox"]     
+      "ignored-players": ["firefox", "zen"],
+      "ellipsis": "...",
+      "dynamic-len": "10",
+      "dynamic-order": ["title", "artist", "album", "position", "length"],
+      "dynamic-importance-order": ["title", "artist", "position", "length", "album"]
     },
     "privacy": {
     "icon-spacing": 4,

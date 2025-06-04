@@ -9,8 +9,7 @@ assign {
     [class="^discord$"] 6
     [class="Spotify"] 7
     [class="Steam"] 8
-    [app_id="^(.*)(qBittorrent)$"] 9
-    [title="Save Image" app_id="firefox"] 1
+    [title="Save Image" app_id="zen"] 10
     [app_id="btrfs-assistant"] 10
     [title="^(p[cC]loud)(.*)$"] 10
     [app_id="dev.deedles.Trayscale"] 10
@@ -42,8 +41,8 @@ for_window {
     [shell="xwayland"] title_format "[XWayland] %title"
     [title="timeshift-gtk"] floating enable
     [title="Friends" ] floating enable
-    [title="Library" app_id="firefox"] floating enable
-    [title="Save Image" app_id="firefox"] focus
+    [title="Library" app_id="zen"] floating enable
+    [title="Save Image" app_id="zen"] focus
     [title="Steam Settings" ] floating enable
     [class="Lxappearance"] floating enable sticky enable
     [class="Gparted"] floating enable sticky enable
