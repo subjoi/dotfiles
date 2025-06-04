@@ -82,6 +82,7 @@ bindsym Print exec prntscrn.sh
 bindsym $mod+Shift+w exec zen-browser
 bindsym $mod+Shift+f exec nemo
 bindsym $mod+Shift+x exec $lock
+bindsym $mod+Shift+p exec fuzzel-keepassxc -d ${pwdb}
 bindsym $mod+Shift+c kill
 
 # swayr
