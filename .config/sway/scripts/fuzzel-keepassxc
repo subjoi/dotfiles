@@ -97,7 +97,7 @@ edit_element() {
 }
 
 show_entry_info() {
-  element=$(echo "$dbpass" | keepassxc-cli show "$db" "$entry" | grep -Ev 'Enter|?*/' | m -p "Info" -l 7 --width 350)
+  element=$(echo "$dbpass" | keepassxc-cli show "$db" "$entry" | grep -Ev 'Enter|?*/' | m -p "Info" -l 7 --width 35)
 
   [ "$element" ] && action=$(printf "Clip\nEdit" | m -p "Choose action" -l 2)
 
