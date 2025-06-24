@@ -37,7 +37,7 @@ exec env QBT_NO_SPLASH=1 qbittorrent
 output * bg $wallpaper fill
 
 exec_always swayidle -w \
-         timeout 10 $lock \
+         timeout 300 $lock \
          timeout 6000 'swaymsg "output * power off"' \
               resume 'swaymsg "output * power on"'
 
