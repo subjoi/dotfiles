@@ -4,15 +4,15 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $speaker F8:5C:7E:D4:18:E5
-set $headphones 88:C9:E8:13:63:77
+set $speaker "F8:5C:7E:D4:18:E5"
+set $headphones "88:C9:E8:13:63:77"
 #set $term kitty
-set $term footclient
-set $wallpaper ~/docs/pics/pape.png
-set $lockpaper ~/docs/pics/lock.png
-set $menu dmenu_path | wmenu | xargs swaymsg exec --
-set $lock swaylock -f -C ~/.config/swaylock/config-rose && playerctl stop
-set $waybar-dir ~/.config/waybar/2bars
+set $term "footclient"
+set $wallpaper "~/docs/pics/pape.png"
+set $lockpaper "~/docs/pics/lock.png"
+set $menu "dmenu_path | wmenu | xargs swaymsg exec --"
+set $lock "swaylock -f -C $HOME/.config/swaylock/config-rose && playerctl stop"
+set $waybar-dir "~/.config/waybar/2bars"
 
 #xwayland disable
 
@@ -36,11 +36,10 @@ exec env QBT_NO_SPLASH=1 qbittorrent
 
 output * bg $wallpaper fill
 
-exec swayidle -w \
-         timeout 300 $lock \
+exec_always swayidle -w \
+         timeout 10 $lock \
          timeout 6000 'swaymsg "output * power off"' \
-              resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+              resume 'swaymsg "output * power on"'
 
 
 output "DVI-I-1" {
@@ -184,4 +183,3 @@ bindsym XF86AudioPrev exec playerctl previous
 include /etc/sway/config.d/*
 include $HOME/.config/sway/conf.d/window-rules
 include $HOME/.config/sway/conf.d/colors
-
